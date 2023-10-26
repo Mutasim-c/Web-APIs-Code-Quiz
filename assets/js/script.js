@@ -1,7 +1,7 @@
 var start = document.getElementById("start");
 var question = document.getElementById("question");
 
-question.style.display = "none";
+//question.style.display = "none";
 var points = 0;
 
 var timeEl = document.querySelector(".time");
@@ -10,8 +10,9 @@ var pointsEl = document.getElementById("points")
 function setTime() {
   // Sets interval in variable
   var timerInterval = setInterval(function() {
+    timeEl.textContent = secondsLeft + " seconds left";
+
     secondsLeft--;
-    timeEl.textContent = secondsLeft + " seconds left till colorsplosion.";
 
     if(secondsLeft <= 0) {
       // Stops execution of action at set interval
@@ -28,16 +29,17 @@ function setTime() {
 
 start.addEventListener("click", function() {
     start.style.display = "none";
-    question.style.display = "block";
+    //question.style.display = "block";
     setTime();
+    newQuestion();
 })
 
-var titles = ["","question2" , "question 3" ,"question 4" ,"question 5"];
-var answers1 = ["","answer1.2" ,"answer1.3" , "answer1.4" , "answer1.5" ];
-var answers2 = ["","answer2.2" ,"answer2.3" , "answer2.4" , "answer2.5" ];
-var answers3 = ["","answer3.2" ,"answer3.3" , "answer3.4" , "answer3.5" ];
-var answers4 = ["","answer4.2" ,"answer4.3" , "answer4.4" , "answer4.5" ];
-var rightAnswer = ["2", "3", "4", "2", "1"]
+var titles = ["Which of the following methods is used to access HTML elements using Javascript?","Which of these are used to declare a variable" , "Who uses console.log" ,"what is and if statement used for?" ,"What does JSON stand for?"];
+var answers1 = ["getElementById()","var" ,"developer" , "looping through lines of code" , "Jelly Starberry Orange Nectarine" ];
+var answers2 = ["getElementByClassName()","declare" ,"user" , "data type sued for storing lists" , "Java Script On Now" ];
+var answers3 = ["Both A and B","let" ,"Both A and B" , "shows what data type a variable is" , "Java Script Object Notation" ];
+var answers4 = ["None of the Above","None of the above" ,"None of the above" , "None of the above" , "None of the above" ];
+var rightAnswer = ["3", "1", "1", "4", "3"]
 
 var title = document.getElementById("titles")
 var answer1 = document.getElementById("answer1");
