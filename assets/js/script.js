@@ -1,12 +1,55 @@
 var start = document.getElementById("start");
 var question = document.getElementById("question");
+var card =  document.querySelector(".cards")
 
-//question.style.display = "none";
 var points = 0;
 
 var timeEl = document.querySelector(".time");
 var secondsLeft = 30;
 var pointsEl = document.getElementById("points")
+
+var nameInput = document.querySelector("#name")
+var userNameSpan = document.querySelector("#user-name");
+var userPointsSpan = document.querySelector("#user-points");
+var signUpButton = document.querySelector("#sign-up");
+var msgDiv = document.querySelector("#msg");
+
+renderLastRegistered();
+
+function displayMessage(type, message) {
+    msgDiv.textContent = message;
+    msgDiv.setAttribute("class", type);
+}
+
+function renderLastRegistered() {
+    // TODO: Retrieve the last email and password and render it to the page
+    var localname = localStorage.getItem("name");
+    var localPoints = localStorage.getItem("points");
+    if (!localname || !localPoints) {
+      return;
+    }
+    userNameSpan.textContent = localname;
+    userPointsSpan.textContent = localPoints;
+}
+
+signUpButton.addEventListener("click", function(event) {
+    event.preventDefault();
+  
+    var name = document.querySelector("#name").value;
+    if (name === "") {
+      displayMessage("error", "Email cannot be blank");
+    }else {
+      displayMessage("success", "Registered successfully");
+  
+    // TODO: Save email and password to localStorage and render the last registered user
+    localStorage.setItem("name",name );
+    localStorage.setItem("points", points);
+    renderLastRegistered();
+  
+    }
+  });
+
+
 function setTime() {
   // Sets interval in variable
   var timerInterval = setInterval(function() {
@@ -19,6 +62,7 @@ function setTime() {
       clearInterval(timerInterval);
       timeEl.textContent = ""
       question.style.display = "none";
+      card.style.display = "block";
       pointsEl.textContent = points;
 
       // Calls function to create and append image
