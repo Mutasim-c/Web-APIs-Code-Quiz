@@ -4,6 +4,28 @@ var question = document.getElementById("question");
 question.style.display = "none";//sets questions to non visible until start is pressed
 var points = 0;
 
+var timeEl = document.querySelector(".time");
+var secondsLeft = 30;
+var pointsEl = document.getElementById("points")
+function setTime() {
+  // Sets interval in variable
+  var timerInterval = setInterval(function() {
+    secondsLeft--;
+    timeEl.textContent = secondsLeft + " seconds left till colorsplosion.";
+
+    if(secondsLeft <= 0) {
+      // Stops execution of action at set interval
+      clearInterval(timerInterval);
+      timeEl.textContent = ""
+      question.style.display = "none";
+      pointsEl.textContent = points;
+
+      // Calls function to create and append image
+    }
+
+  }, 1000);
+}
+
 start.addEventListener("click", function() {
     start.style.display = "none";
     question.style.display = "block";
